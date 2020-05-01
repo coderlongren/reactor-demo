@@ -13,7 +13,7 @@
         <spring.boot.version>2.0.5.RELEASE</spring.boot.version>
         <!-- Compile libs -->
         <fastjson.version>1.2.60</fastjson.version>
-        <jackson.version>2.9.0</jackson.version>
+        <jackson.version>2.9.10.4</jackson.version>
         <!-- Test libs -->
         <junit.version>4.12</junit.version>
         <mockito.version>2.21.0</mockito.version>
