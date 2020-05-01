@@ -1,0 +1,55 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.qunar.flight.user.base.MySampleLayout2">
+                <prefix>MyPrefix</prefix>
+                <special_prefix>Special-prefix</special_prefix>
+                <printThreadName>false</printThreadName>
+            </layout>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!--<file>${user-dir}</file>-->
+        <file>logFile.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <appender name="rolling-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logFile1.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--             按天轮转 -->
+            <fileNamePattern>logFile.%d{yyyy-MM-dd_HH-mm}.log.gz</fileNamePattern>
+            <!--             保存 30 天的历史记录，最大大小为 30GB -->
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="kafkaAppender" class="com.qunar.flight.user.util.KafkaLogAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="com.qunar.flight.user.util" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <!--<appender-ref ref="rolling-FILE"/>-->
+        <appender-ref ref="FILE"/>
+        <!--<appender-ref ref="kafkaAppender"/>-->
+    </root>
+
+    <!-- 如果缺失 class 属性，则会默认加载 ch.qos.logback.core.hook.DefaultShutdownHook -->
+</configuration>
