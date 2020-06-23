@@ -3,6 +3,8 @@ package com.qunar.flight.user.util;
 import org.reactivestreams.Subscription;
 import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 public class SampleSubscriber<T> extends BaseSubscriber<T> {
 
@@ -17,6 +19,16 @@ public class SampleSubscriber<T> extends BaseSubscriber<T> {
     }
 
     public static void main(String[] args) {
+        Mono<String> mono = Mono.fromCallable(() -> {
+            System.out.println("fff");
+            Thread.sleep(3000);
+            return "block";
+        }).subscribeOn(Schedulers.elastic());
+        mono.subscribe(res -> System.out.println(res));
+        System.out.println("ddd");
+
+    }
+    public static void main2(String[] args) {
         SampleSubscriber<Integer> ss = new SampleSubscriber<Integer>();
         Flux<Integer> ints = Flux.range(1, 4);
         ints.subscribe(i -> System.out.println(i),
