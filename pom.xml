@@ -10,7 +10,7 @@
 
 
     <properties>
-        <spring.boot.version>2.0.5.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <!-- Compile libs -->
         <fastjson.version>1.2.60</fastjson.version>
         <jackson.version>2.9.0</jackson.version>
