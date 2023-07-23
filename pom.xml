@@ -35,7 +35,7 @@
         <maven.jacoco.version>0.8.3</maven.jacoco.version>
         <maven.jar.version>3.1.0</maven.jar.version>
         <maven.pmd.version>3.8</maven.pmd.version>
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.9</logback.version>
 
         <profiles.dir>src/main/filters</profiles.dir>
     </properties>
